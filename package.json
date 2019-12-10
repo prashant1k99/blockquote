@@ -1,0 +1,30 @@
+{
+	"name": "blockquote",
+	"version": "0.0.1",
+	"description": "BlockQuote Plugin for EditorJs",
+	"main": "./build/bundle.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "webpack-dev-server --output-public-path =/build/",
+		"build": "webpack"
+	},
+	"author": "Prashant Singh",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/core": "^7.7.5",
+		"@babel/plugin-transform-runtime": "^7.7.6",
+		"@babel/preset-env": "^7.7.6",
+		"@babel/runtime": "^7.7.6",
+		"babel-loader": "^8.0.6",
+		"css-loader": "^3.3.0",
+		"eslint": "^6.7.2",
+		"eslint-loader": "^3.0.3",
+		"postcss-loader": "^3.0.0",
+		"postcss-nested": "^4.2.1",
+		"postcss-nested-ancestors": "^2.0.0",
+		"svg-inline-loader": "^0.8.0",
+		"webpack": "^4.41.2",
+		"webpack-cli": "^3.3.10",
+		"webpack-dev-server": "^3.9.0"
+	}
+}
