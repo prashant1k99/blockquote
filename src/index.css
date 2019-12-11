@@ -1,0 +1,46 @@
+.blockquote {
+	&::before,
+	&::after {
+		position: absolute;
+		color: #f1efe6;
+		font-size: 8rem;
+		width: 4rem;
+		height: 4rem;
+	}
+	&::before {
+		content: "“";
+		left: -5rem;
+		top: -2rem;
+	}
+
+	&::after {
+		content: "”";
+		right: -5rem;
+		bottom: 1rem;
+	}
+	textarea {
+		padding: 10px;
+		margin: 50px auto;
+		resize: none;
+		overflow: hidden;
+		font-weight: 700;
+		font-size: 30px;
+		width: 100%;
+		border: 0;
+		/* border-radius: 3px; */
+		outline: none;
+	}
+}
+
+.blockquote--warning {
+	/*  */
+}
+.blockquote--info {
+	/*  */
+}
+.blockquote--warning {
+	/*  */
+}
+.blockquote--alert {
+	/*  */
+}

@@ -33,11 +33,8 @@
 
 // Standard imports for the file
 import quoteIcon from './svg/quote.svg'
-import alertIcon from './svg/alert.svg'
-import infoIcon from './svg/info.svg'
-import noticeIcon from './svg/notice.svg'
-import warningIcon from './svg/warning.svg'
-import ui from './ui'
+import './index.css'
+import Tunes from './tunes'
 
 /**
  * @typedef {object} BlockQuoteConfig
@@ -65,36 +62,76 @@ export default class BlockQuote {
       title: 'BlockQuote'
     };
   }
+
+  /**
+  * @param {BlockQuoteData} data - previously saved data
+  * @param {BlockQuoteConfig} config - user config for Tool
+  * @param {object} api - Editor.js API
+  */
+  constructor({ data, config, api }) {
+    this.api = api;
+
+    /**
+     * Tool's initial config
+     */
+    this.config = {
+      placeholder: config.placeholder || 'Let\' write...',
+      tools: config.tools || ['alert', 'info', 'warning', 'note']
+    };
+
+    this.tunes = new Tunes({
+      api,
+      onChange: (tuneName) => this.tuneToggled(tuneName)
+    });
+
+    /**
+     * Set saved state
+     */
+    this.data = data;
+    this.wrapper = undefined;
+  }
+
+  renderSettings() {
+    return this.tunes.render(this.data);
+  }
+
+  tuneToggled(tuneName) {
+    // inverse tune state
+    this.setTune(tuneName, !this._data[tuneName]);
+  }
+
   render() {
-    return document.createElement('input');
+    const wrapper = document.createElement('div');
+    const input = document.createElement('textarea');
+    wrapper.classList.add('blockquote');
+    wrapper.appendChild(input);
+
+    input.placeholder = this.config.placeholder;
+    input.value = this.data && this.data.value ? this.data.value : '';
+    if (this.value) {
+      () => {
+        input.css('height', input.get(0).scrollHeight + 'px');
+      }
+    }
+    input.oninput = () => {
+      input.style.height = 'auto';
+      input.style.height = input.scrollHeight + 'px';
+    }
+    return wrapper;
   }
 
   save(blockContent) {
+    const input = blockContent.querySelector('input');
     return {
-      url: blockContent.value
+      value: blockContent.value
     }
+  }
+
+  validate(savedData) {
+    if (!savedData.value.trim()) {
+      return false;
+    }
+    return true;
   }
 }
 
-/**
-   * @param {BlockQuoteData} data - previously saved data
-   * @param {BlockQuoteConfig} config - user config for Tool
-   * @param {object} api - Editor.js API
-   */
-// constructor = ({ data, config, api }) => {
-//   this.api = api;
-
-//   /**
-//    * Tool's initial config
-//    */
-//   this.config = {
-//     placeholder: config.placeholder || 'Let\' write...',
-//     tools: config.tools || ['alert', 'info', 'warning', 'note']
-//   };
-
-//   /**
-//    * Set saved state
-//    */
-//   this._data = {};
-//   this.data = data;
-// };
