@@ -16,7 +16,11 @@
 				autofocus: true,
 				tools: {
 					blockquote: {
-						class: BlockQuote
+						class: BlockQuote,
+						config: {
+							placeholder: "Fire It",
+							tools: ["alert", "info", "warning", "note"]
+						}
 					}
 				}
 			});

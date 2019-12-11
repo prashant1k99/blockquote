@@ -12,21 +12,33 @@ export default class Tunes {
    * @param {object} api - Editor API
    * @param {function} onChange - tune toggling callback
    */
-  constructor({ api, onChange }) {
+  constructor({ api, tools, onChange }) {
     this.api = api;
     this.onChange = onChange;
     this.buttons = [];
+    this.tunes = [];
+    this.makeTools(tools);
   }
 
+  // Setter for Tools
+  makeTools(tools) {
+    tools.forEach(tool => {
+      Tunes.tunesList.forEach(tune => {
+        if (tune.name === tool) {
+          this.tunes.push(tune);
+        } else return;
+      })
+    })
+  }
   /**
    * Available Image tunes
    */
-  static get tunes() {
+  static get tunesList() {
     return [
       {
-        name: 'notice',
+        name: 'note',
         icon: noticeIcon,
-        title: 'Notice'
+        title: 'Note'
       },
       {
         name: 'info',
@@ -66,27 +78,20 @@ export default class Tunes {
    */
   render(toolData) {
     let wrapper = make('div', this.CSS.wrapper);
-
     this.buttons = [];
-
-    Tunes.tunes.forEach(tune => {
+    this.tunes.forEach(tune => {
       let el = make('div', [this.CSS.buttonBase, this.CSS.button], {
         innerHTML: tune.icon,
         title: tune.title
       });
-
       el.addEventListener('click', () => {
         this.tuneClicked(tune.name);
       });
-
       el.dataset.tune = tune.name;
       el.classList.toggle(this.CSS.buttonActive, toolData[tune.name]);
-
       this.buttons.push(el);
-
       wrapper.appendChild(el);
     });
-
     return wrapper;
   }
 

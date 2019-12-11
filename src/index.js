@@ -35,6 +35,7 @@
 import quoteIcon from './svg/quote.svg'
 import './index.css'
 import Tunes from './tunes'
+import Ui from './ui'
 
 /**
  * @typedef {object} BlockQuoteConfig
@@ -78,12 +79,17 @@ export default class BlockQuote {
       placeholder: config.placeholder || 'Let\' write...',
       tools: config.tools || ['alert', 'info', 'warning', 'note']
     };
-
+    let tools = this.config.tools
     this.tunes = new Tunes({
       api,
+      tools,
       onChange: (tuneName) => this.tuneToggled(tuneName)
     });
 
+    this.ui = new Ui({
+      api,
+      tools
+    })
     /**
      * Set saved state
      */
