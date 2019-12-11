@@ -5,7 +5,7 @@
 	"main": "./build/bundle.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "webpack-dev-server --output-public-path =/build/",
+		"start": "webpack-dev-server --output-public-path /build/",
 		"build": "webpack"
 	},
 	"author": "Prashant Singh",
