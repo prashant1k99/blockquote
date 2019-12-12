@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<div id="editorjs"></div>
-
+		<button onclick="fire()">Save</button>
 		<script>
 			const editor = new EditorJS({
 				autofocus: true,
@@ -22,8 +22,23 @@
 							tools: ["alert", "info", "warning", "note"]
 						}
 					}
+				},
+				data: {},
+				onChange: () => {
+					console.log(this.data);
 				}
 			});
+			const fire = () => {
+				console.log("Fired");
+				editor
+					.save()
+					.then(outputData => {
+						console.log("Article data: ", outputData);
+					})
+					.catch(error => {
+						console.log("Saving failed: ", error);
+					});
+			};
 		</script>
 	</body>
 </html>
