@@ -20,7 +20,7 @@
 	},
 	"repository": "https://github.com/prashant1k99/blockquote",
 	"author": "Prashant Singh",
-	"license": "ISC",
+	"license": "MIT",
 	"devDependencies": {
 		"@babel/core": "^7.7.5",
 		"@babel/plugin-transform-runtime": "^7.7.6",
