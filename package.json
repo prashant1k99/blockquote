@@ -1,5 +1,5 @@
 {
-	"name": "blockquote",
+	"name": "@blockquote/prashant1k99",
 	"version": "0.0.1",
 	"description": "BlockQuote Plugin for EditorJs",
 	"main": "./build/bundle.js",
@@ -8,6 +8,17 @@
 		"start": "webpack-dev-server --output-public-path /build/",
 		"build": "webpack"
 	},
+	"keywords": [
+		"codex editor",
+		"tool",
+		"blockquote",
+		"editor.js",
+		"editorjs"
+	],
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"repository": "https://github.com/prashant1k99/blockquote",
 	"author": "Prashant Singh",
 	"license": "ISC",
 	"devDependencies": {
