@@ -107,29 +107,18 @@ export default class BlockQuote {
   }
 
   render() {
-    const wrapper = document.createElement('div');
-    const input = document.createElement('textarea');
-    wrapper.classList.add('blockquote');
-    wrapper.appendChild(input);
-
-    input.placeholder = this.config.placeholder;
-    input.value = this.data && this.data.value ? this.data.value : '';
-    if (this.value) {
-      () => {
-        input.css('height', input.get(0).scrollHeight + 'px');
-      }
-    }
-    input.oninput = () => {
-      input.style.height = 'auto';
-      input.style.height = input.scrollHeight + 'px';
-    }
-    return wrapper;
+    return this.ui.render({
+      config: this.config.placeholder,
+      value: Object.keys(this.data).length !== 0 ? this.data : null
+    });
   }
 
   save(blockContent) {
-    const input = blockContent.querySelector('input');
+    const input = blockContent.querySelector('content');
+    const byData = blockContent.querySelector('by');
     return {
-      value: blockContent.value
+      value: input.value,
+      by: byData.value
     }
   }
 

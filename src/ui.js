@@ -2,7 +2,6 @@ export default class Ui {
   /**
    * @param {object} api - Editor.js API
    * @param {ImageConfig} config - user config
-   * @param {function} onSelectFile - callback for clicks on Select file buttor
    */
   constructor({ api, config }) {
     this.api = api;
@@ -27,6 +26,36 @@ export default class Ui {
       blockContainer: 'block-tool'
     };
   };
+
+  /**
+   * @param {BlockQuoteData} data
+   * @return {HTMLDivElement}
+   */
+  render(data) {
+    let value = ''
+    if (data.value) value = data.value;
+    let input = make('textarea', 'content', {
+      placeholder: data.config,
+      value: value
+    })
+    let by = make('input', 'by-field', {
+      placeholder: 'by...',
+      value: value
+    })
+    const wrapper = make('div', 'blockquote--quote')
+    wrapper.appendChild(input);
+    wrapper.appendChild(by);
+    if (this.value) {
+      () => {
+        input.css('height', input.get(0).scrollHeight + 'px');
+      }
+    }
+    input.oninput = () => {
+      input.style.height = 'auto';
+      input.style.height = input.scrollHeight + 'px';
+    }
+    return wrapper;
+  }
 
   /**
    * Apply visual representation of activated tune
