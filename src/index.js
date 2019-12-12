@@ -62,7 +62,7 @@ export default class BlockQuote {
      * Tool's initial config
      */
     this.config = {
-      placeholder: config.placeholder || 'Let\' write...',
+      placeholder: config.placeholder || 'Let\' write something good...',
     };
 
     /**
@@ -70,7 +70,6 @@ export default class BlockQuote {
      */
     this.data = {
       value: data.value || '',
-      caption: data.caption || ''
     };
     this.wrapper = undefined;
   }
@@ -79,16 +78,9 @@ export default class BlockQuote {
     let textarea = make('textarea', 'textarea-content', {
       placeholder: this.config.placeholder,
       value: Object.keys(this.data).length !== 0 ? this.data.value : null
-    })
-    let by = make('input', 'by-field', {
-      placeholder: 'by...',
-      value: Object.keys(this.data).length !== 0 ? this.data.caption : null
-    })
-    const byWrapper = make('div', 'by-wrapper')
-    byWrapper.appendChild(by);
-    const wrapper = make('div', 'blockquote')
+    });
+    const wrapper = make('div', 'blockquote');
     wrapper.appendChild(textarea);
-    wrapper.appendChild(byWrapper);
     if (this.value) {
       () => {
         textarea.css('height', textarea.get(0).scrollHeight + 'px');
@@ -103,10 +95,8 @@ export default class BlockQuote {
 
   save(blockContent) {
     const value = blockContent.querySelector(`.textarea-content`);
-    const caption = blockContent.querySelector(`.by-field`);
 
     return Object.assign(this.data, {
-      caption: caption.value,
       value: value.value,
     });
   }
