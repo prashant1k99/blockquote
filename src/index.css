@@ -1,14 +1,21 @@
 .blockquote {
-	&::before {
+	&::before,
+	&::after {
 		position: absolute;
-		color: blue;
+		color: #f1efe6;
 		font-size: 8rem;
 		width: 4rem;
+		height: 4rem;
 	}
 	&::before {
 		content: "“";
 		left: -5rem;
 		top: -2rem;
+	}
+	&::after {
+		content: "”";
+		right: -5rem;
+		bottom: 1rem;
 	}
 	.textarea-content {
 		padding: 10px;
@@ -20,21 +27,5 @@
 		width: 100%;
 		border: 0;
 		outline: none;
-	}
-	.by-wrapper {
-		padding: 10px;
-		width: 100%;
-		display: flex;
-		/* justify-content: right; */
-		flex-direction: row-reverse;
-	}
-	.by-field {
-		font-weight: 400;
-		color: black;
-		border: 0;
-		border-bottom: 2px solid blue;
-		font-size: 18px;
-		outline: none;
-		padding: 5px;
 	}
 }
